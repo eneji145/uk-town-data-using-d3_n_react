@@ -1,0 +1,323 @@
+/* Chat container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--controls-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat header */
+.chat-header {
+    padding: 16px;
+    background: var(--button-bg);
+    color: white;
+    border-bottom: 1px solid var(--controls-border);
+}
+
+.chat-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.chat-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Messages area */
+.chat-messages {
+    flex-grow: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    background: var(--controls-bg);
+}
+
+/* Scrollbar styling */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: var(--button-bg);
+    border-radius: 3px;
+}
+
+/* Message bubbles */
+.message {
+    display: flex;
+    margin-bottom: 1rem;
+    animation: messageSlide 0.3s ease-out;
+    max-width: 85%;
+}
+
+.user-message {
+    margin-left: auto;
+}
+
+.bot-message {
+    margin-right: auto;
+}
+
+.message-bubble {
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.user-message-bubble {
+    background: var(--button-bg);
+    color: white;
+    border-top-right-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bot-message-bubble {
+    background: var(--controls-bg);
+    color: var(--text-color);
+    border: 1px solid var(--select-border);
+    border-top-left-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Suggestion chips */
+.suggestion-chips {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-bottom: 8px;
+}
+
+.suggestion-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.suggestion-chip {
+    padding: 6px 12px;
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    opacity: 0.9;
+}
+
+.suggestion-chip:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Input form container */
+.chat-input-form {
+    padding: 16px;
+    background: var(--controls-bg);
+    border-top: 1px solid var(--controls-border);
+}
+
+/* Input and button container */
+.chat-input-form .flex {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Input styling */
+.chat-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid var(--select-border);
+    border-radius: 20px;
+    background: var(--controls-bg);
+    color: var(--text-color);
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--button-bg);
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.chat-input::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+
+
+
+button[type="submit"] {
+    min-width: 100px;
+    padding: 12px 20px;
+    background: var(--button-bg);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button[type="submit"]:hover {
+    background: var(--button-hover);
+    transform: translateY(-1px);
+}
+
+
+
+.chat-submit {
+    min-width: 80px;  /* Ensure minimum width */
+    padding: 12px 24px;
+    background: #3b82f6; /* Matches your blue theme */
+    color: white;
+    border: none;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap; /* Prevents text wrapping */
+    flex-shrink: 0; /* Prevents button from shrinking */
+}
+
+.chat-submit:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+}
+
+.chat-submit:active {
+    transform: translateY(0);
+}
+
+/* Typing indicator */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 12px 16px;
+    min-height: 24px;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--button-bg);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: typing-bounce 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: 0s; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Message animations */
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Message content formatting */
+.bot-message-bubble ul {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.bot-message-bubble li {
+    margin: 4px 0;
+}
+
+/* Emoji sizing and spacing */
+.message-bubble em {
+    font-style: normal;
+    color: #8b5cf6;
+}
+
+.message-bubble strong {
+    font-weight: 600;
+    color: var(--button-bg);
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] .bot-message-bubble {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .chat-input {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 640px) {
+    .message {
+        max-width: 90%;
+    }
+
+    .chat-input {
+        padding: 10px 16px;
+    }
+
+    button[type="submit"] {
+        padding: 8px 16px;
+    }
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .bot-message-bubble {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .chat-input {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* List styling in bot messages */
+.bot-message-bubble ul {
+    margin: 8px 0;
+    padding-left: 20px;
+}
+
+.bot-message-bubble li {
+    margin: 4px 0;
+}
+
+/* Code or command styling */
+.bot-message-bubble code {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+}
